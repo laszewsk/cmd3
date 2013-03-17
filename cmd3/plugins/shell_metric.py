@@ -1,14 +1,3 @@
-"""
-@options([
-        make_option('-f', '--start_date', type="string", help="start time of the interval (type. 
-        make_option('-t', '--end_date', type="string", help="end time of the interval (type. YYYY-MM-DDThh:mm:ss)"),
-        make_option('-M', '--month', type="int", help="month to analyze (type. MM)"),
-        make_option('-Y', '--year', type="int", help="year to analyze (type. YYYY)"),
-        make_option('-m', '--metric', dest="metric", type="string", help="item name to measure (e.g. runtime, count)"),
-        make_option('-P', '--period', dest="period", type="string", help="search period (monthly, daily)")
-        ])
-"""
-
 import textwrap
 from docopt import docopt
 import inspect
@@ -73,4 +62,67 @@ class shell_metric:
 	
     def do_table(self, args):
         arguments = _get_doc_args(self.help_table,args)
+        print(arguments)
+
+    ######################################################################
+    # chart
+    ######################################################################
+	
+    @help_method
+    def help_chart(self):
+        """
+        Usage:
+               chart [--dir DIR] --type (bar|line|column|pie|motion)
+	             [--api (highchart|google|jquery|sparkline)] [FILENAME]
+
+        Creates a chart of a given type
+
+        Arguments:
+            DIR       The directory into which the chart is written
+	    FILENAME  The filename in which the chart is written.
+	    
+        Options:
+          --dir        The directory
+	  --type       The type of the chart
+	  --api        The chart api library
+	  
+        """
+
+    def do_chart(self, line, opts=None):
+        arguments = _get_doc_args(self.help_chart,args)
+        print(arguments)
+
+
+    ######################################################################
+    # count images
+    ######################################################################
+
+    @help_method
+    def help_count_images(self):
+        """
+        Usage:
+               count_images [--detail | --summary] --user USER 
+
+	Count bucket images per user (development level). It is
+        virtual machine image counts grouped by users or accounts
+        based on euca2ools.  It shows that which user or account
+        currently owns how many virtual machine images on the system.
+        This metric is based on the euca2ool command.
+	euca-describe-images. that a eucalyptus user can see a list
+        of machine images.
+
+        Arguments:
+            USER       The user
+	    
+        Options:
+          --user       Show only images from the specified userid.
+	  --detail     Show details of the image (What would that be?)
+	  --summary    show summary about the image (default)    
+	  
+        """
+
+
+
+    def do_count_images(self, line, opts=None):
+        arguments = _get_doc_args(self.help_count_images,args)
         print(arguments)
