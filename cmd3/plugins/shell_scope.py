@@ -3,6 +3,7 @@ import cmd
 import string
 import textwrap
 import glob
+import datetime
 
 class shell_scope():
 
@@ -114,6 +115,11 @@ class shell_scope():
             print line
             return ""
 
+        time = datetime.datetime.now().strftime("%H:%M:%S")
+        date = datetime.datetime.now().strftime("%Y-%m-%d")
+
+        line = line.replace("$time",time)
+        line = line.replace("$date",date)
         for v in self.variables:
             line = line.replace("$"+v,self.variables[v])
 
@@ -181,12 +187,12 @@ class shell_scope():
         
     def _add_variable(self, name, value):
         self.variables[name] = value
-        self._list_variables()
+        #self._list_variables()
 
     def _delete_variable(self, name):
         self._list_variables()
         del self.variables[name]
-        self._list_variables()
+        #self._list_variables()
             
     def _list_variables(self):
         print 10 * "-"
@@ -201,6 +207,10 @@ class shell_scope():
             return
         elif '=' in arg:
             (variable, value) = arg.split('=',1)
+            if value == "time":
+                value = datetime.datetime.now().strftime("%H:%M:%S")
+            elif value == "date":
+                value = datetime.datetime.now().strftime("%Y-%m-%d")
             self._add_variable(variable, value)
             return
         elif arg.startswith('delete'):
