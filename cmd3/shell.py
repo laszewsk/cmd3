@@ -32,6 +32,7 @@ for import_line in imports:
 #
 
 class Shell(cmd.Cmd,
+            shell_metric,
             shell_opt_example,
             shell_util,
             shell_banner,
@@ -39,6 +40,7 @@ class Shell(cmd.Cmd,
             
 
     scopes = ['rain', 'gregor']
+
 
     ######################################################################
     # DO NOT CAHNGE

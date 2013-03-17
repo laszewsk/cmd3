@@ -1,4 +1,0 @@
-var abc=123
-script load
-script one
-quit

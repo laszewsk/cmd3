@@ -11,7 +11,8 @@ class shell_scope():
     echo = True
     scope = ""
     scopes = []
-    scopeless = ['var', 'use', 'quit', 'q', 'EOF', 'eof', 'help']
+    #scopeless = ['info', 'var', 'use', 'quit', 'q', 'EOF', 'eof', 'help']
+    scopeless = ['info', 'var', 'use', 'quit', 'q', 'help']
     prompt = 'cm> '
     scripts = {}
     variables = {}
@@ -24,7 +25,8 @@ class shell_scope():
         self.echo = True
         self.scope = ""
         self.scopes = []
-        self.scopeless = ['use', 'quit', 'q', 'EOF', 'eof', 'help']
+        self.scopeless = ['info', 'var', 'use', 'quit', 'q', 'help']
+        #self.scopeless = ['use', 'quit', 'q', 'EOF', 'eof', 'help']
 
     def help_use(self):
         msg = """

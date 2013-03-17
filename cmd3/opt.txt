@@ -1,4 +1,0 @@
-help opt_example
-
-opt_example -r file
-

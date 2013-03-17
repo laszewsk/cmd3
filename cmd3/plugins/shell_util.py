@@ -5,8 +5,8 @@ class shell_util:
     def do_quit(self, line):
         return True
 
-    do_EOF = do_quit
-    do_eof = do_quit
+    #    do_EOF = do_quit
+    #    do_eof = do_quit
     do_q   = do_quit
 
     def help_help(self):
@@ -28,8 +28,8 @@ class shell_util:
         """
         print textwrap.dedent(msg)
         
-    help_EOF = help_quit
-    help_eof = help_quit
+    #help_EOF = help_quit
+    #help_eof = help_quit
     help_q = help_quit
 
     # from cmd2
