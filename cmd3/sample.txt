@@ -1,0 +1,22 @@
+use rain
+    test-1
+    test-2
+
+use gregor
+    test-3
+    test-4
+
+info
+
+use add nothing
+use delete nothing
+
+use /
+
+var a=b
+
+rain $a
+
+var delete a
+
+quit
