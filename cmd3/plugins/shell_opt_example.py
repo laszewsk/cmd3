@@ -11,12 +11,10 @@ class shell_opt_example:
         Usage:
                opt_example [-vr] [FILE] ...
 
-        Process FILE and optionally apply correction to either left-hand side or
-        right-hand side.
+        Process FILE and optionally apply some options
 
         Arguments:
           FILE        optional input file
-          CORRECTION  correction angle, needs FILE, --left or --right to be present
 
         Options:
           -v       verbose mode
