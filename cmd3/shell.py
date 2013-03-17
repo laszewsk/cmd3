@@ -33,6 +33,7 @@ for import_line in imports:
 
 
 class Shell(cmd.Cmd,
+            shell_opt_example,
             shell_util,
             shell_banner,
             shell_scope):
