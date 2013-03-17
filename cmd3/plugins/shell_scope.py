@@ -4,6 +4,7 @@ import string
 import textwrap
 import glob
 import datetime
+import os
 
 class shell_scope():
 
@@ -105,6 +106,8 @@ class shell_scope():
         return
     
     def precmd(self, line):
+        if line != "hist":
+            self._hist += [ line.strip() ]
 
         line = line.strip()
         if line == "":
@@ -122,6 +125,8 @@ class shell_scope():
         line = line.replace("$date",date)
         for v in self.variables:
             line = line.replace("$"+v,self.variables[v])
+        for v in os.environ:
+            line = line.replace("$"+v,os.environ[v])
 
         try:
             (start, rest) = line.split(" ")

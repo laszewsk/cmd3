@@ -31,7 +31,6 @@ for import_line in imports:
 # no dynamic loading yet
 #
 
-
 class Shell(cmd.Cmd,
             shell_opt_example,
             shell_util,
@@ -46,6 +45,17 @@ class Shell(cmd.Cmd,
     ######################################################################
 
     preloop = shell_banner.preloop
+
+    def preloop(self):
+        """Initialization before prompting user for commands.
+           Despite the claims in the Cmd documentaion, Cmd.preloop() is not a stub.
+        """
+        shell_banner.preloop(self)
+        cmd.Cmd.preloop(self)   ## sets up command completion
+        self._hist    = []      ## No history yet
+        self._locals  = {}      ## Initialize execution namespace for user
+        self._globals = {}
+    
     prompt  = shell_scope.prompt
     precmd  = shell_scope.precmd
     emptyline = shell_scope.emptyline
@@ -71,8 +81,6 @@ class Shell(cmd.Cmd,
         print "%20s =" % "With scope", self.scopes
         print "%20s =" % "No scope", self.scopeless
 
-
-
     ######################################################################
     # Sample Command
     ######################################################################
@@ -83,7 +91,24 @@ class Shell(cmd.Cmd,
     def do_rain(self,arg):
         print "RAIN ", arg
 
+    def default(self, line):       
+        """Called on an input line when the command prefix is not recognized.
+           In that case we execute the line as Python code.
+        """
+        try:
+            exec(line) in self._locals, self._globals
+        except Exception, e:
+            self.do_shell(line)
+            #print e.__class__, ":", e
 
+ ## Command definitions ##
+    def do_hist(self, args):
+        """Print a list of commands that have been entered"""
+        print self._hist
+
+    def do_shell(self, args):
+        """Pass command to a system shell when line begins with '!'"""
+        os.system(args)
 
 if __name__ == "__main__":
     shell = Shell()
