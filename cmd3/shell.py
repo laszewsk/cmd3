@@ -27,7 +27,6 @@ for import_line in imports:
     exec(import_line)
 
 
-print shell_util
 #
 # no dynamic loading yet
 #
@@ -64,6 +63,7 @@ class Shell(cmd.Cmd,
 
         
     def do_info(self,arg):
+        print "%20s =" % "Scripts", str(self.scripts)
         print "%20s =" % "Variables", str(self.variables)
         print "%20s =" % "Echo", str(self.echo)
         print "%20s =" % "Scope", self.scope
